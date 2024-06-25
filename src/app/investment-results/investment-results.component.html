@@ -1,23 +1,27 @@
-<table>
-    <thead>
-        <tr>
-            <th>Year</th>
-            <th>Investment Value</th>
-            <th>Interest (Year)</th>
-            <th>Total Interest</th>
-            <th>Invested Capital</th>
-        </tr>
-    </thead>
-    <tbody>
-        @for (ir of investmentResults; track ir.year) {
-        <tr>
-            <td>{{ ir.year }}</td>
-            <td>{{ ir.valueEndOfYear | currency:'USD':'symbol' }}</td>
-            <!-- <td>{{ ir.annualInvestment | currency:'USD':'symbol' }}</td> -->
-            <td>{{ ir.interest | currency:'USD':'symbol' }}</td>
-            <td>{{ ir.totalInterest | currency:'USD':'symbol' }}</td>
-            <td>{{ ir.totalAmountInvested | currency:'USD':'symbol' }}</td>
-        </tr>
-        }
-    </tbody>
-</table>
+@if (!results) {
+    <p class="center">Please enter some values and press "Calculate".</p>
+} @else {
+    <table>
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Investment Value</th>
+                <th>Interest (Year)</th>
+                <th>Total Interest</th>
+                <th>Invested Capital</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (result of results; track result.year) {
+            <tr>
+                <td>{{ result.year }}</td>
+                <td>{{ result.valueEndOfYear | currency:'USD':'symbol' }}</td>
+                <!-- <td>{{ result.annualInvestment | currency:'USD':'symbol' }}</td> -->
+                <td>{{ result.interest | currency:'USD':'symbol' }}</td>
+                <td>{{ result.totalInterest | currency:'USD':'symbol' }}</td>
+                <td>{{ result.totalAmountInvested | currency:'USD':'symbol' }}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
