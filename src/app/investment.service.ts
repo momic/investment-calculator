@@ -1,17 +1,17 @@
-import { Injectable } from "@angular/core";
+import { Injectable, signal } from "@angular/core";
 import { InvestmentResult } from "./investment-results/investment-result.interface";
 import type { UserInput } from "./user-input/user-input.interface";
 
 @Injectable({providedIn: 'root'})
 export class InvestmentService {
-    // resultsData = signal<InvestmentResult[] | undefined>(undefined);    
-    resultData?: InvestmentResult[];
+    resultData = signal<InvestmentResult[] | undefined>(undefined);
+    // resultData?: InvestmentResult[];
 
     calculateInvestmentResults(userInput?: UserInput) {
 
         if (userInput == null) {
-          // this.resultsData.set([]);
-          this.resultData = [];
+          this.resultData.set([]);
+          // this.resultData = [];
           return;
         }
     
@@ -36,8 +36,8 @@ export class InvestmentService {
           });
         }
     
-        this.resultData = annualData; 
-        // this.resultsData.set(annualData);
+        // this.resultData = annualData;
+        this.resultData.set(annualData);
       }
     
 }
